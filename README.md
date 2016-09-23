@@ -7,7 +7,12 @@ A Kernel Density Estimate computation is performed in Python to determine the pr
 
 
 
+### Live Demo
+
+[**Link**](https://cadrev.github.io/sfmap/)
+
+
 ![image](https://github.com/cadrev/sfmap/blob/master/screenshot/sample.png)
 
 
-[**Demo**](https://cadrev.github.io/sfmap/)
+
