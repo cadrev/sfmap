@@ -4,3 +4,6 @@ The San Francisco Crime Data consists of 12 years of crime reports from across a
 Visually, some of the crime classes show obvious clustering, the challenge in this data set is on how to quantify these visual hotspots in terms of geospatial probability.
 
 A Kernel Density Estimate computation is performed in Python to determine the probabilistic contour of the image. The contour is exported as a topojson file and rendered using D3.js
+
+
+[Demo](https://cadrev.github.io/sfmap/)
