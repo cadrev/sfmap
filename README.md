@@ -6,4 +6,4 @@ Visually, some of the crime classes show obvious clustering, the challenge in th
 A Kernel Density Estimate computation is performed in Python to determine the probabilistic contour of the image. The contour is exported as a topojson file and rendered using D3.js
 
 
-[Demo](https://cadrev.github.io/sfmap/)
+[**Demo**](https://cadrev.github.io/sfmap/)
