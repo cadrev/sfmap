@@ -1,0 +1,139 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 19/02/2016 14:45
+    */
+
+    @font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .flaticon-archer-criminal-hurting-a-person-for-his-back-with-an-arrow-of-an-arch:before { content: "\f100"; }
+.flaticon-armed-criminal-male-silhouette:before { content: "\f101"; }
+.flaticon-armed-criminals-with-money-bag:before { content: "\f102"; }
+.flaticon-bullet:before { content: "\f103"; }
+.flaticon-captured-criminal-hands:before { content: "\f104"; }
+.flaticon-criminal-armed-silhouette:before { content: "\f105"; }
+.flaticon-criminal-bloody-weapon:before { content: "\f106"; }
+.flaticon-criminal-burning-the-evidence-of-the-crime:before { content: "\f107"; }
+.flaticon-criminal-carrying-money-bag-at-his-back:before { content: "\f108"; }
+.flaticon-criminal-fighting-with-a-child:before { content: "\f109"; }
+.flaticon-criminal-fighting-with-a-person:before { content: "\f10a"; }
+.flaticon-criminal-forcing-a-door:before { content: "\f10b"; }
+.flaticon-criminal-forcing-car-door:before { content: "\f10c"; }
+.flaticon-criminal-front-standing-with-two-suitcases-covered-by-hat-and-coat-with-a-car-behind:before { content: "\f10d"; }
+.flaticon-criminal-hand-print-silhouette:before { content: "\f10e"; }
+.flaticon-criminal-hand-subtracting-an-object-from-a-pocket:before { content: "\f10f"; }
+.flaticon-criminal-in-jail-silhouette:before { content: "\f110"; }
+.flaticon-criminal-kicking-the-back-of-the-head-of-a-woman:before { content: "\f111"; }
+.flaticon-criminal-male-face:before { content: "\f112"; }
+.flaticon-criminal-outlined-shape-on-floor-from-top-view:before { content: "\f113"; }
+.flaticon-criminal-pointing-a-gun-to-a-victim-on-the-floor:before { content: "\f114"; }
+.flaticon-criminal-pointing-with-a-gun-to-a-person-on-knees:before { content: "\f115"; }
+.flaticon-criminal-posing-for-police-picture:before { content: "\f116"; }
+.flaticon-criminal-running-with-stolen-woman-bag:before { content: "\f117"; }
+.flaticon-criminal-shoot:before { content: "\f118"; }
+.flaticon-criminal-silhouette-armed-with-a-bat:before { content: "\f119"; }
+.flaticon-criminal-silhouette-with-a-knife:before { content: "\f11a"; }
+.flaticon-criminal-stealing-a-baby:before { content: "\f11b"; }
+.flaticon-criminal-stealing-an-old-woman:before { content: "\f11c"; }
+.flaticon-criminal-stealing-the-bag-of-a-person-from-the-back:before { content: "\f11d"; }
+.flaticon-criminal-surrounded-by-stolen-objects-in-circles:before { content: "\f11e"; }
+.flaticon-criminal-trying-to-steal-a-bag-from-other-person:before { content: "\f11f"; }
+.flaticon-criminal-walking-silhouette-with-an-arm-in-his-hand:before { content: "\f120"; }
+.flaticon-criminal-with-a-knife-attacking-a-person-asking-for-money:before { content: "\f121"; }
+.flaticon-criminal-with-a-knife-behind-a-walker:before { content: "\f122"; }
+.flaticon-criminal-with-big-gun-silhouette:before { content: "\f123"; }
+.flaticon-criminal-with-covered-head:before { content: "\f124"; }
+.flaticon-criminal-with-gun-covered-with-coat-and-hat:before { content: "\f125"; }
+.flaticon-criminal-with-label:before { content: "\f126"; }
+.flaticon-criminal-with-stolen-computers:before { content: "\f127"; }
+.flaticon-criminals-silhouettes-of-an-adult-with-a-child:before { content: "\f128"; }
+.flaticon-elegant-standing-smoking-criminal:before { content: "\f129"; }
+.flaticon-eye-ball:before { content: "\f12a"; }
+.flaticon-gangster-talking-by-a-phone-and-pointing-with-an-arm-to-a-prisoner-sitting-on-a-chair-in-front-of-him:before { content: "\f12b"; }
+.flaticon-handcuffs:before { content: "\f12c"; }
+.flaticon-man-stealing-a-helpless-woman:before { content: "\f12d"; }
+.flaticon-motorcyclists-criminals-stealing-woman-bag:before { content: "\f12e"; }
+.flaticon-robber-silhouette-trying-to-steal-car-part:before { content: "\f12f"; }
+.flaticon-two-criminals:before { content: "\f130"; }
+.flaticon-violent-criminal:before { content: "\f131"; }
+    
+    $font-Flaticon-archer-criminal-hurting-a-person-for-his-back-with-an-arrow-of-an-arch: "\f100";
+    $font-Flaticon-armed-criminal-male-silhouette: "\f101";
+    $font-Flaticon-armed-criminals-with-money-bag: "\f102";
+    $font-Flaticon-bullet: "\f103";
+    $font-Flaticon-captured-criminal-hands: "\f104";
+    $font-Flaticon-criminal-armed-silhouette: "\f105";
+    $font-Flaticon-criminal-bloody-weapon: "\f106";
+    $font-Flaticon-criminal-burning-the-evidence-of-the-crime: "\f107";
+    $font-Flaticon-criminal-carrying-money-bag-at-his-back: "\f108";
+    $font-Flaticon-criminal-fighting-with-a-child: "\f109";
+    $font-Flaticon-criminal-fighting-with-a-person: "\f10a";
+    $font-Flaticon-criminal-forcing-a-door: "\f10b";
+    $font-Flaticon-criminal-forcing-car-door: "\f10c";
+    $font-Flaticon-criminal-front-standing-with-two-suitcases-covered-by-hat-and-coat-with-a-car-behind: "\f10d";
+    $font-Flaticon-criminal-hand-print-silhouette: "\f10e";
+    $font-Flaticon-criminal-hand-subtracting-an-object-from-a-pocket: "\f10f";
+    $font-Flaticon-criminal-in-jail-silhouette: "\f110";
+    $font-Flaticon-criminal-kicking-the-back-of-the-head-of-a-woman: "\f111";
+    $font-Flaticon-criminal-male-face: "\f112";
+    $font-Flaticon-criminal-outlined-shape-on-floor-from-top-view: "\f113";
+    $font-Flaticon-criminal-pointing-a-gun-to-a-victim-on-the-floor: "\f114";
+    $font-Flaticon-criminal-pointing-with-a-gun-to-a-person-on-knees: "\f115";
+    $font-Flaticon-criminal-posing-for-police-picture: "\f116";
+    $font-Flaticon-criminal-running-with-stolen-woman-bag: "\f117";
+    $font-Flaticon-criminal-shoot: "\f118";
+    $font-Flaticon-criminal-silhouette-armed-with-a-bat: "\f119";
+    $font-Flaticon-criminal-silhouette-with-a-knife: "\f11a";
+    $font-Flaticon-criminal-stealing-a-baby: "\f11b";
+    $font-Flaticon-criminal-stealing-an-old-woman: "\f11c";
+    $font-Flaticon-criminal-stealing-the-bag-of-a-person-from-the-back: "\f11d";
+    $font-Flaticon-criminal-surrounded-by-stolen-objects-in-circles: "\f11e";
+    $font-Flaticon-criminal-trying-to-steal-a-bag-from-other-person: "\f11f";
+    $font-Flaticon-criminal-walking-silhouette-with-an-arm-in-his-hand: "\f120";
+    $font-Flaticon-criminal-with-a-knife-attacking-a-person-asking-for-money: "\f121";
+    $font-Flaticon-criminal-with-a-knife-behind-a-walker: "\f122";
+    $font-Flaticon-criminal-with-big-gun-silhouette: "\f123";
+    $font-Flaticon-criminal-with-covered-head: "\f124";
+    $font-Flaticon-criminal-with-gun-covered-with-coat-and-hat: "\f125";
+    $font-Flaticon-criminal-with-label: "\f126";
+    $font-Flaticon-criminal-with-stolen-computers: "\f127";
+    $font-Flaticon-criminals-silhouettes-of-an-adult-with-a-child: "\f128";
+    $font-Flaticon-elegant-standing-smoking-criminal: "\f129";
+    $font-Flaticon-eye-ball: "\f12a";
+    $font-Flaticon-gangster-talking-by-a-phone-and-pointing-with-an-arm-to-a-prisoner-sitting-on-a-chair-in-front-of-him: "\f12b";
+    $font-Flaticon-handcuffs: "\f12c";
+    $font-Flaticon-man-stealing-a-helpless-woman: "\f12d";
+    $font-Flaticon-motorcyclists-criminals-stealing-woman-bag: "\f12e";
+    $font-Flaticon-robber-silhouette-trying-to-steal-car-part: "\f12f";
+    $font-Flaticon-two-criminals: "\f130";
+    $font-Flaticon-violent-criminal: "\f131";
