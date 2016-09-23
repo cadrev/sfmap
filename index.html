@@ -367,21 +367,21 @@ path {
         <i class="large material-icons">list</i>
     </a>
     <ul>
-      <li ><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('vehicle_data.csv'); 
+      <li ><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('data/vehicle_data.csv'); 
 renderBarchart('tally/vehicle_tally.csv'); globalSelect = 'vehicle_data.csv'; setCrimeName('VEHICLE THEFT');" data-delay="50" data-position="left" data-tooltip="Vehicle Theft" style="font-size:115%"><i class="flaticon-criminal-forcing-car-door" style="position:relative; left:-14px; top:-2px"></i></a></li>
-      <li><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('prosti_data.csv');
+      <li><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('data/prosti_data.csv');
 renderBarchart('tally/prosti_tally.csv'); globalSelect = 'prosti_data.csv'; setCrimeName('PROSTITUTION')" data-delay="50" data-position="left" data-tooltip="Prostitution"><i class="flaticon-man-stealing-a-helpless-woman" style="position:relative; left:-13px"></i></a></li>
-      <li><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('sex_data.csv'); 
+      <li><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('data/sex_data.csv'); 
 renderBarchart('tally/sex_tally.csv'); globalSelect = 'sex_data.csv'; setCrimeName('SEX OFFENSE')" data-delay="50" data-position="left" data-tooltip="Sex Offense"><i class="flaticon-criminal-kicking-the-back-of-the-head-of-a-woman" style="position:relative; left:-13px"></i></a></li>
-      <li><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('larceny_data.csv');
+      <li><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('data/larceny_data.csv');
 renderBarchart('tally/larceny_tally.csv'); globalSelect = 'larceny_data.csv'; setCrimeName('LARCENY')" data-delay="50" data-position="left" data-tooltip="Larceny"><i class="flaticon-criminal-running-with-stolen-woman-bag" style="position:relative; left:-13px"></i></a></li>
-      <li><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('assault_data.csv'); 
+      <li><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('data/assault_data.csv'); 
 renderBarchart('tally/assault_tally.csv'); globalSelect = 'assault_data.csv'; setCrimeName('ASSAULT')" data-delay="50" data-position="left" data-tooltip="Assault"><i class="flaticon-criminal-silhouette-armed-with-a-bat" style="position:relative; left:-16px"></i></a></li>
-    <li><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('gambling_data.csv'); 
+    <li><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('data/gambling_data.csv'); 
 renderBarchart('tally/gambling_tally.csv'); globalSelect = 'gambling_data.csv'; setCrimeName('GAMBLING')" data-delay="50" data-position="left" data-tooltip="Gambling"><i class="flaticon-armed-criminals-with-money-bag" style="position:relative; left:-14px"></i></a></li>
-      <li><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('suicide_data.csv'); 
+      <li><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('data/suicide_data.csv'); 
 renderBarchart('tally/suicide_tally.csv'); globalSelect = 'suicide_data.csv'; setCrimeName('SUICIDE')" data-delay="50" data-position="left" data-tooltip="Suicide"><i class="flaticon-criminal-bloody-weapon" style="position:relative; left:-14px; top: -2px"></i></a></li>
-      <li><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('kidnap_data.csv'); 
+      <li><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('data/kidnap_data.csv'); 
 renderBarchart('tally/kidnap_tally.csv'); globalSelect = 'kidnap_data.csv'; setCrimeName('KIDNAPPING')" data-delay="50" data-position="left" data-tooltip="Kidnapping"><i class="flaticon-criminal-stealing-a-baby" style="position:relative; left:-16px"></i></a></li>
     </ul>
 
@@ -796,7 +796,7 @@ function checkAddress(checkbox)
         if (globalSelect == null){
         	console.log('no input');
         	UncheckAll()
-        } else {
+        } else {tall
           
   
         	renderContour(globalSelect.split('_')[0]+'.json')
