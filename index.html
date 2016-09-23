@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SF Crime Map</title>
+
+
+<!-- <script src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+<script src="leaflet.ajax.min.js"></script>
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="flaticon.css"> 
+
+<link rel="stylesheet" href="d3.slider.css" />
+<script src="d3.slider.js"></script>
+
+<!-- Mustache -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
+
+
+
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+<script src="L.D3SvgOverlay.min.js"></script>
+
+
+<style type="text/css">
+
+body { 
+  margin:  0; 
+  padding:0;
+
+}
+
+#mapid {  
+ top:45px;
+ position:absolute;
+ height: 100%;
+ width:100%;
+}
+
+
+path   {
+   position: absolute;
+   z-index: 10000;
+  fill-opacity: .54;
+  stroke: #000;
+  stroke-opacity: .54;
+  stroke-width: .5px;
+}
+
+
+path:hover {
+  position:absolute;
+  z-index: 1000;
+  fill-opacity: .6;
+  stroke: #000;
+  stroke-opacity: .8;
+  stroke-width: 0.7px;
+}
+
+
+@media only screen and (min-width: 601px) {
+nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+    height: 45px;
+    line-height: 45px;
+}
+  .navbar-fixed {
+    height: 45px;
+  }
+}
+
+nav ul a {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+nav ul li:hover, nav ul li.active {
+  background-color: rgba(253,191,0,0.8);
+}
+
+
+ 
+.legend label{
+  font-family: 'Roboto', sans-serif; 
+  font-weight: 500;
+  display:block;
+  float:left;
+  height:15px;
+  width:20%;
+  text-align:center;
+  font-size:10px;
+  color:rgba(255,255,255,0.80);
+}
+
+.legend span {    
+  display:block;
+  float:left;
+  height:15px;
+  width:20%;
+  text-align:center;
+  font-size:9px;
+  color:#808080;
+  opacity:0.90;
+}
+
+
+
+.select-wrapper input.select-dropdown {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: transparent;
+    border-color: -moz-use-text-color -moz-use-text-color #444444;
+    border-image: none;
+    border-style: none none solid;
+    border-width: medium medium 0px;
+    cursor: pointer;
+    display: block;
+    font-size: 1rem;
+    height: 3rem;
+    line-height: 3rem;
+    margin: 0 0 15px;
+    outline: medium none;
+    padding: 0;
+    position: relative;
+    width: 100%;
+}
+
+
+.dropdown-content {
+    background-color: #353535 !important;
+
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+      color:rgba(255,255,255,0.75) !important;
+    white-space: nowrap !important;
+    display: block;
+    font-size: 13px !important;
+    line-height: 22px;
+    padding: 14px 16px;
+}
+
+
+.select-wrapper input.select-dropdown {
+    color:rgba(255,255,255,0.75) !important;
+    left: 5px !important;
+}
+
+
+path {
+    stroke-linejoin: round;
+    stroke-miterlimit: 2;
+    stroke-linecap: round;
+     fill: white;
+}
+
+
+.bar {
+  fill: #ffc107;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis {
+  font: 10px sans-serif;
+  color: #DDDDDD;
+
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: rgba(255,255,255,0.5);
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+   fill: white;
+
+}
+
+.axis text {
+  font-size: 90%;
+  color: #DDDDDD;
+  fill: rgba(255,255,255,0.78);
+}
+
+
+
+.select-crime{
+  position:absolute;
+  top:-345px;
+  left:340px;
+}
+
+
+
+
+.switch label input[type="checkbox"]:checked + .lever {
+    background-color: rgba(255,196,0,0.45) !important;
+}
+.switch label input[type="checkbox"]:checked + .lever::after {
+    background-color: rgba(255,196,0,0.95) !important;
+    left: 24px;
+}
+
+
+
+  .backdrop{
+       background-color: #ffb300;
+
+     }
+</style> <!-- End Style -->
+
+
+</head>
+
+
+
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h5>About the Project</h5>
+      <p>This web application utilizes the San Francisco Crime Data for the year range of 2003-2015. A Spatial Gaussian Kernel Density estimate is performed on the
+         corresponding geospatial data to get the density contour of a specific category of crime. The contour data is exported as a topojson file and rendered on the web app as a D3 path polygon.</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+    </div>
+  </div>
+          
+
+
+ <!-- legend -->
+   <div id="legend" style="display:none;">
+     <div style="width:400px; height: 70px; background-color:rgba(45,45,45,0.9); padding:10px; border-radius:3px">
+       <strong style="color:rgba(255,255,255,0.75); font-family: 'Roboto', sans-serif; font-weight: 700">Crime Occurence Density Estimate</strong>
+         <div class='legend clearfix' >
+           <span style='background-color:#feedde;'></span>
+           <span style='background-color:#fdbe85;'></span>
+           <span style='background-color:#fd8d3c;'></span>
+           <span style='background-color:#e6550d;'></span>
+           <span style='background-color:#a63603;'></span>
+           <label>Low</label> 
+           <label> </label>
+           <label></label>
+           <label></label>
+           <label> High </label>
+         </div>
+     </div>
+   </div>
+
+
+<!--
+
+      <select  onchange="renderMarker(this.value); globalSelect = this.value;" style="color:white !important; font-size: 50%;">
+            <option value="" disabled selected style="color: #353535 !important">Choose your option</option>
+            <option value="vehicle_data.csv">Vehicle Theft</option>
+            <option value="prosti_data.csv">Prostitution</option>
+            <option value="sex_data.csv">Sex Offense</option>
+            <option value="larceny_data.csv">Larceny</option>
+            <option value="assault_data.csv">Assault</option>
+            <option value="gambling_data.csv">Gambling</option>
+            <option value="suicide_data.csv">Suicide</option>
+            <option value="kidnap_data.csv">Kidnapping</option>
+          
+          </select>
+-->
+
+
+
+
+
+<!-- -->
+
+    <div id="select"  style="display:none;">
+     <div  style="width:330px; height: 50px; background-color:rgba(45,45,45,0.9); padding:10px; border-radius:3px;">
+  
+
+        <strong style="color:rgba(255,255,255,0.75); font-family: 'Roboto Condensed', sans-serif; font-weight: 700; position:relative; top:-10px;">DENSITY ESTIMATE</strong>
+        <div class="switch" style="position:relative; top:-5px">
+          <label>
+          Off
+          <input type="checkbox"  onclick="checkAddress(this)">
+          <span class="lever"></span>
+          On
+          </label>
+        </div>
+       
+     </div>
+
+   </div>
+
+
+
+  <div id="vis"   style="display:none;">
+
+     <div class="data-vis" style="background-color:rgba(45,45,45,0.9); height:350px; width:400px">
+        
+        <strong class="crime-name" style="color:rgba(255,196,0,0.97); letter-spacing: -1px; font-family: 'Roboto Condensed', sans-serif; font-size:250%; font-weight: 700; position:absolute; top:3px; left:10px;">NO CRIME DATA</strong>
+
+
+        <strong style="color:rgba(255,255,255,0.6); font-family: 'Roboto Condensed', sans-serif; font-weight: 700; position:relative; top:10px; left:290px;">DENSITY ESTIMATE</strong>
+        <div class="switch" style="position:relative; top:13px; left:305px;">
+          <label>
+    
+          <input type="checkbox"  onclick="checkAddress(this)">
+          <span class="lever"></span>
+      
+          </label>
+           
+        </div>
+        <br>
+         <strong style="color:rgba(255,255,255,0.75); font-family: 'Roboto', sans-serif; font-weight: 700; position:relative; top:10px; left:155px;">Yearly Occurence</strong>
+        <br>
+
+     </div>
+    
+
+
+   </div>
+
+
+
+
+
+ 
+
+
+<body>
+
+  <div class="navbar-fixed " style="position: absolute">
+    <nav class="grey darken-4">
+      <div class="nav-wrapper container">
+        <a href="#!" class="brand-logo" style="color:rgba(255,196,0,0.55); letter-spacing: -1px; font-family: 'Roboto Condensed', sans-serif; font-weight:700; font-size: 205%">SF CRIME <span style="font-weight:300; position:relative; left:-3px; color:rgba(255,196,0,0.9);">MAP</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a  data-target="modal1" class="modal-trigger">About</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+
+
+<div id="mapid"></div>
+  
+
+<!--  <a class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="I am tooltip">Hover me!</a> -->
+
+
+  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a id="conswitch" class="btn-floating btn-large yellow darken-3">
+        <i class="large material-icons">list</i>
+    </a>
+    <ul>
+      <li ><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('vehicle_data.csv'); 
+renderBarchart('tally/vehicle_tally.csv'); globalSelect = 'vehicle_data.csv'; setCrimeName('VEHICLE THEFT');" data-delay="50" data-position="left" data-tooltip="Vehicle Theft" style="font-size:115%"><i class="flaticon-criminal-forcing-car-door" style="position:relative; left:-14px; top:-2px"></i></a></li>
+      <li><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('prosti_data.csv');
+renderBarchart('tally/prosti_tally.csv'); globalSelect = 'prosti_data.csv'; setCrimeName('PROSTITUTION')" data-delay="50" data-position="left" data-tooltip="Prostitution"><i class="flaticon-man-stealing-a-helpless-woman" style="position:relative; left:-13px"></i></a></li>
+      <li><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('sex_data.csv'); 
+renderBarchart('tally/sex_tally.csv'); globalSelect = 'sex_data.csv'; setCrimeName('SEX OFFENSE')" data-delay="50" data-position="left" data-tooltip="Sex Offense"><i class="flaticon-criminal-kicking-the-back-of-the-head-of-a-woman" style="position:relative; left:-13px"></i></a></li>
+      <li><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('larceny_data.csv');
+renderBarchart('tally/larceny_tally.csv'); globalSelect = 'larceny_data.csv'; setCrimeName('LARCENY')" data-delay="50" data-position="left" data-tooltip="Larceny"><i class="flaticon-criminal-running-with-stolen-woman-bag" style="position:relative; left:-13px"></i></a></li>
+      <li><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('assault_data.csv'); 
+renderBarchart('tally/assault_tally.csv'); globalSelect = 'assault_data.csv'; setCrimeName('ASSAULT')" data-delay="50" data-position="left" data-tooltip="Assault"><i class="flaticon-criminal-silhouette-armed-with-a-bat" style="position:relative; left:-16px"></i></a></li>
+    <li><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('gambling_data.csv'); 
+renderBarchart('tally/gambling_tally.csv'); globalSelect = 'gambling_data.csv'; setCrimeName('GAMBLING')" data-delay="50" data-position="left" data-tooltip="Gambling"><i class="flaticon-armed-criminals-with-money-bag" style="position:relative; left:-14px"></i></a></li>
+      <li><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('suicide_data.csv'); 
+renderBarchart('tally/suicide_tally.csv'); globalSelect = 'suicide_data.csv'; setCrimeName('SUICIDE')" data-delay="50" data-position="left" data-tooltip="Suicide"><i class="flaticon-criminal-bloody-weapon" style="position:relative; left:-14px; top: -2px"></i></a></li>
+      <li><a class="btn-floating yellow darken-3 tooltipped" onclick="renderMarker('kidnap_data.csv'); 
+renderBarchart('tally/kidnap_tally.csv'); globalSelect = 'kidnap_data.csv'; setCrimeName('KIDNAPPING')" data-delay="50" data-position="left" data-tooltip="Kidnapping"><i class="flaticon-criminal-stealing-a-baby" style="position:relative; left:-16px"></i></a></li>
+    </ul>
+
+  </div>
+
+
+
+<script>
+
+
+//
+// Constant variables
+//
+var numericalDomain = [10000,25000, 50000, 75000,100000];
+var colorRange      = ["#feedde","#fdbe85","#fd8d3c", "#e6550d", "#a63603"];
+var color           = d3.scale
+                        .linear()
+                        .domain(numericalDomain)
+                        .range(colorRange);
+
+var globalSelect;
+var buttonState = 1;
+
+//	37.6040,-123.0137 
+//	 37.8324,-122.3549
+
+var southWest = L.latLng(37.8324,-122.3549);
+var northEast = L.latLng(37.6040,-122.58137 );
+var bounds    = L.latLngBounds(southWest, northEast);
+
+
+
+var mapUrl = 'http://{s}.tiles.mapbox.com/v3/gilbertfelicio.a0e960d3/{z}/{x}/{y}.png'
+
+var map    = new L.Map('mapid', {
+     
+       center      : new L.LatLng(37.7564423,-122.4688214),
+       zoom        : 12,
+       maxZoom     : 18,
+       zoomControl : false,
+       //maxBounds   : bounds,
+       layers      : new L.TileLayer(mapUrl)
+      
+});
+
+
+map._initPathRoot()  
+
+
+//************ Legend ****************
+
+var MyControl = L.Control.extend({
+    
+    options: {
+        position: 'topleft'
+    },
+
+    onAdd: function addDOMElement(map) {
+        // create the control container with a particular class name
+        var container = L.DomUtil.create('div', 'my-custom-control');
+        L.DomEvent.disableClickPropagation(container);
+
+        //
+        // Declare an HTML DOM outside the script and get its id
+        // and render it inside our control layer
+        // 
+        container.innerHTML = document.getElementById('legend').innerHTML;
+        return container;   
+    }
+});
+
+map.addControl(new MyControl());
+
+
+
+
+
+
+
+var vizControl = L.Control.extend({
+    
+    options: {
+        position: 'topleft'
+    },
+
+    onAdd: function addDOMElement(map) {
+        // create the control container with a particular class name
+        var container = L.DomUtil.create('div', 'my-custom-control2');
+        L.DomEvent.disableClickPropagation(container);
+
+        //
+        // Declare an HTML DOM outside the script and get its id
+        // and render it inside our control layer
+        // 
+        container.innerHTML = document.getElementById('vis').innerHTML;
+        return container;   
+    }
+});
+
+map.addControl(new vizControl());
+
+
+
+
+
+/*
+
+var selectControl = L.Control.extend({
+    
+    options: {
+        position: 'topleft'
+    },
+
+    onAdd: function addDOMElement(map) {
+        // create the control container with a particular class name
+        var container = L.DomUtil.create('div', 'my-custom-control1');
+        L.DomEvent.disableClickPropagation(container);
+
+        //
+        // Declare an HTML DOM outside the script and get its id
+        // and render it inside our control layer
+        // 
+        container.innerHTML = document.getElementById('select').innerHTML;
+        return container;   
+    }
+});
+
+var Panel = new selectControl();
+map.addControl(Panel);
+
+
+
+
+      //
+      // Add the panel to the map
+      //
+      Panel.getContainer().addEventListener('mouseover', function () {
+        map.dragging.disable();
+        map.scrollWheelZoom.disable();
+      });
+
+      // Re-enable dragging when user's cursor leaves the element
+       Panel.getContainer().addEventListener('mouseout', function () {
+        map.dragging.enable();
+        map.scrollWheelZoom.enable();
+      }); */
+//************End Legend**************
+
+
+
+
+
+
+var svg   = d3.select(map.getPanes().overlayPane).append("svg")
+var   g   = svg.append("g").attr("class", "leaflet-zoom-hide");
+
+
+var cities        = [];
+var citiesOverlay = L.d3SvgOverlay(function(sel,proj){
+
+   
+
+  
+
+  var citiesUpd = sel.selectAll('circle').data(cities);
+  citiesUpd.enter()
+    .append('circle')
+    .attr('r',3)
+    .attr('cx',function(d){return proj.latLngToLayerPoint(d.latLng).x;})
+    .attr('cy',function(d){return proj.latLngToLayerPoint(d.latLng).y;})
+    .attr('stroke','#303030')
+    .attr('stroke-width',0.5)
+    .attr('opacity', 0.0)
+    .attr('fill',"orange")
+    .transition()
+    .delay(function(d, i) { return i * 1; })
+    .duration(150)
+    .attr("opacity", 0.6);
+
+});
+
+
+
+//renderMarker('vehicle_data.csv');
+
+
+
+
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = 400 - margin.left - margin.right,
+    height = 280 - margin.top - margin.bottom;
+
+var x = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .05);
+
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .ticks(10, "");
+
+var svg1 = d3.selectAll(".data-vis").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .attr("dx", "0.71em")
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+//********************** data vis graph
+
+function renderBarchart(filePath){
+
+
+   svg1.selectAll('.bar').remove()
+   svg1.selectAll('g').remove()
+
+
+d3.csv(filePath, type, function(error, data) {
+  if (error) throw error;
+
+  x.domain(data.map(function(d) { return d.year; }));
+  y.domain([0, d3.max(data, function(d) { return d.tally; })]);
+
+
+   
+ 
+  svg1.append("g")
+       .attr("class", "x axis")
+       .attr("transform", "translate(0," + height + ")")
+       .call(xAxis)
+
+
+  svg1.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+     .append("text")
+ 
+
+  svg1.selectAll(".bar")
+      .data(data)
+      .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.year); })
+      .attr("width", x.rangeBand())
+      .attr("y", height)
+      .attr("height", 0)
+      .transition()
+      .delay(function(d, i) { return i * 120; })
+      .duration(1300)
+      .attr("height", function(d) { return height - y(d.tally); })
+      .attr("y", function(d) { return y(d.tally); })
+
+
+
+/*   var total = 0
+   for(var i = 0; i < data.length; i++){
+     
+    // console.log(data[i].tally);
+     total = total + data[i].tally;
+
+   }
+
+   console.log(total)
+   */
+
+
+
+      /*  svg.selectAll(".bar")
+      .data(data)
+      .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.letter); })
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d.frequency); })
+      .attr("height", 0)
+      .transition()
+      .delay(function(d, i) { return i * 50; })
+      .duration(200)
+      .attr("height", function(d) { return height - y(d.frequency); })*/
+
+});
+
+
+
+}
+
+
+
+function type(d) {
+  d.tally = +d.tally;
+  return d;
+}
+
+
+
+
+//
+// Render marker
+//
+function renderMarker(filename){
+  
+  UncheckAll();
+     svg.selectAll("path").transition().duration(700).attr("opacity",0.0).remove();
+
+  d3.csv(filename,function(data){
+  
+    d3.selectAll('circle').remove();
+    map.removeLayer(citiesOverlay)
+  
+    cities = data.map(function(d){
+      d.latLng = [+d.lat,+d.lng];
+      return d;
+    });
+  
+    citiesOverlay.addTo(map);
+
+  });
+
+}
+
+
+
+
+
+function setCrimeName(name){
+
+  $('.crime-name').text(name);
+}
+
+
+//
+// Render Contour
+//
+
+function renderContour(dataPath){
+
+  d3.json(dataPath, function(topology) {
+   
+    console.log(topology)
+    svg.selectAll("path").transition().duration(700).attr("opacity",0.0).remove();
+    buttonState = 0;
+
+         
+
+
+    var bounds = d3.geo.bounds(topojson.object(topology, topology.objects.contours)),
+        path   = d3.geo.path().projection(project);
+        
+        
+        console.log('test')
+  
+    var feature = g.selectAll("path")
+                   .data(topojson.object(topology, topology.objects.contours).geometries.reverse())
+                   .enter()
+                   .append("path")
+                   .style("fill", function(d) { 
+                     
+                     
+                     return color(d.properties.level); 
+                   })
+               /*    .attr("opacity",0)
+                   .transition()
+                   .delay(function(d, i) { return i * 200; })
+                   .duration(700)
+                   .attr("opacity", 1);;*/
+
+    map.on("viewreset", reset);
+    reset();
+
+
+    //
+    // Utility Functions
+    //
+    function reset() {
+      var bottomLeft = project(bounds[0]),
+          topRight = project(bounds[1]);
+
+      svg.attr("width", topRight[0] - bottomLeft[0])
+         .attr("height", bottomLeft[1] - topRight[1])
+         .style("margin-left", bottomLeft[0] + "px")
+         .style("margin-top", topRight[1] + "px");
+ 
+      g.attr("transform", "translate(" + -bottomLeft[0] + "," + -topRight[1] + ")");
+      feature.attr("d", path);
+    }
+
+    // Use Leaflet to implement a D3 geographic projection.
+    function project(x) {
+      var point = map.latLngToLayerPoint(new L.LatLng(x[1], x[0]));
+      return [point.x, point.y];
+    }
+
+  });
+
+}
+
+
+function checkAddress(checkbox)
+{
+    if (checkbox.checked)
+    {
+        if (globalSelect == null){
+        	console.log('no input');
+        	UncheckAll()
+        } else {
+          
+  
+        	renderContour(globalSelect.split('_')[0]+'.json')
+        }
+
+    }
+
+    else {
+           svg.selectAll("path").transition().duration(700).attr("opacity",0.0).remove();
+     
+    }
+}
+
+
+
+
+
+
+
+
+
+
+function UncheckAll(){ 
+
+      var w = document.getElementsByTagName('input'); 
+      for(var i = 0; i < w.length; i++){ 
+        if(w[i].type=='checkbox'){ 
+          w[i].checked = false; 
+        }
+      }
+} 
+
+
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+           
+
+
+ $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger').leanModal();
+  });
+
+
+</script>
+
+</body>
+</html>t
