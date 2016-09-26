@@ -1,5 +1,5 @@
 # **San Francisco Crime Map Data**
-A Project for My Data Science and Visualization Class under Dr. Reinabelle Reyes. 
+A project for my Data Science and Visualization class under Dr. Reinabelle Reyes. 
 The San Francisco Crime Data consists of 12 years of crime reports from across all of San Francisco's neighborhoods.
 Visually, some of the crime classes show obvious clustering, the challenge in this data set is on how to quantify these visual hotspots in terms of geospatial probability.
 
